@@ -94,7 +94,7 @@ func run(c *cli.Context) error {
 	}
 
 	if len(t.Templates()) == 1 {
-		err = t.Execute(os.Stdout, data)
+		err = t.ExecuteTemplate(os.Stdout, t.Templates()[0].Name(), data)
 	} else {
 		err = t.ExecuteTemplate(os.Stdout, c.String("main"), data)
 	}
