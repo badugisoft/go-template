@@ -33,7 +33,8 @@ func main() {
 			&cli.StringFlag{
 				Name:    "main",
 				Aliases: []string{"m"},
-				Usage:   "main template name\n\tif missing, first template is used",
+				Value:   "main",
+				Usage:   "main template name\n\t",
 			},
 		},
 		ArgsUsage: "[template files]",
@@ -92,12 +93,12 @@ func run(c *cli.Context) error {
 		return cli.Exit("parsing template failed : "+err.Error(), -6)
 	}
 
-	name := c.String("main")
-	if name == "" {
-		name = t.Templates()[0].Name()
+	if len(t.Templates()) == 1 {
+		err = t.Execute(os.Stdout, data)
+	} else {
+		err = t.ExecuteTemplate(os.Stdout, c.String("main"), data)
 	}
 
-	err = t.ExecuteTemplate(os.Stdout, name, data)
 	if err != nil {
 		return cli.Exit("executing template failed : "+err.Error(), -7)
 	}
