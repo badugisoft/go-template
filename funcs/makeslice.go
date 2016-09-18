@@ -1,5 +1,9 @@
 package funcs
 
-func MakeSlice(args ...interface{}) []interface{} {
-	return args
+func init() {
+	registerFunc("gtMakeSlice",
+		func(args ...interface{}) []interface{} {
+			return args
+		}
+	)
 }
