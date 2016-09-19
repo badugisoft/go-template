@@ -8,6 +8,5 @@ func init() {
 				ret[args[i].(string)] = args[i+1]
 			}
 			return ret
-		}
-	)
+		})
 }
