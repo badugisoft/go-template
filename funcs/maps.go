@@ -2,8 +2,12 @@ package funcs
 
 import "text/template"
 
-var FuncMap = template.FuncMap{}
+var _map = template.FuncMap{}
 
-func registerFunc(name string, f interface{}) {
-	FuncMap[name] = f
+func register(name string, f interface{}) {
+	_map[name] = f
+}
+
+func GetMap() template.FuncMap {
+	return _map
 }

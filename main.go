@@ -88,7 +88,7 @@ func run(c *cli.Context) error {
 		return cli.Exit("read data failed : "+err.Error(), -4)
 	}
 
-	t, err := template.New("").Funcs(funcs.FuncMap).ParseFiles(c.Args().Slice()...)
+	t, err := template.New("").Funcs(funcs.GetMap).ParseFiles(c.Args().Slice()...)
 	if err != nil {
 		return cli.Exit("parsing template failed : "+err.Error(), -6)
 	}
